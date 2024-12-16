@@ -26,6 +26,6 @@ class UploadForm(UploadFormTemplate):
 
   def upload_submit_click(self, **event_args):
     """This method is called when the button is clicked"""
-    anvil.server.call("upload", method=self.uploadMethod, url=self.url_box.text, file=self.file_box.file)
+    anvil.server.call("say_hello", 'bob')
 
   
