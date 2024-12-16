@@ -1,6 +1,7 @@
 allow_embedding: false
-name: Material Design 1
-package_name: Material_Design_1
+metadata: {description: Configuration generator for Happy Hare firmware with the 3MS, logo_img: 'asset:logo.png', title: 3MS Config Generator}
+name: 3MS Config Generator
+package_name: _3MS_Config_Generator
 runtime_options:
   client_version: '3'
   server_spec: {base: python310-minimal}
