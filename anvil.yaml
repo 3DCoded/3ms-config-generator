@@ -5,11 +5,12 @@ package_name: _3MS_Config_Generator
 runtime_options:
   client_version: '3'
   server_spec: {base: python310-minimal}
+  server_spec_disabled: {base: python310-minimal, requirements: requests}
   server_version: python3-sandbox
   version: 2
 services:
 - client_config: {}
   server_config: {}
   source: /runtime/services/tables.yml
-startup: {module: Form, type: form}
+startup: {module: UploadForm, type: form}
 startup_form: null
