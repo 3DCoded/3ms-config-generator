@@ -14,6 +14,6 @@ class SelectSteppersForm(SelectSteppersFormTemplate):
     
     for stepper in self.stepper_options:
       checkbox = CheckBox(checked=False, text=stepper)
-      self.content_panel.add_component(checkbox)
+      self.checkbox_panel.add_component(checkbox)
       self.checkboxes.append(checkbox)
       
