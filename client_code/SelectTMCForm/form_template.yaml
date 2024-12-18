@@ -8,6 +8,11 @@ components:
     name: linear_panel
     properties: {}
     type: LinearPanel
+  - event_bindings: {click: submit_button_click}
+    layout_properties: {grid_position: 'PGPRGN,DISSJP'}
+    name: submit_button
+    properties: {align: left, role: primary-color, text: SUBMIT}
+    type: Button
   layout_properties: {slot: default}
   name: content_panel
   properties: {}

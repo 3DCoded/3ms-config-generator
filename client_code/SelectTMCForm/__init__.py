@@ -26,3 +26,17 @@ class SelectTMCForm(SelectTMCFormTemplate):
         if 'tmc' in key:
           radio = RadioButton(selected=False, group_name=stepper, text=key)
           panel.add_component(radio)
+
+  def submit_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    selected_options = {}
+    panels = self.linear_panel.get_components()
+    for panel in panels:
+      components = panel.get_components()
+      stepper = components[0].text
+      for component in components:
+        if type(component) == RadioButton:
+          if component.selected:
+            selected_options[stepper] = component.text[9:-1]
+
+    # Move to next form
