@@ -16,6 +16,8 @@ Currently supports:
 import requests
 import configparser
 
+config = ''
+
 def format_pin(pin, mcu):
     prefixes = ''
     if '!' in pin: prefixes += '!'
@@ -25,14 +27,20 @@ def format_pin(pin, mcu):
     return f'{prefixes}{mcu}:{pin}'
 
 def read_config_from_url(url):
-    resp = requests.get(url)
-    if resp.status_code != 200: return
-    return resp.text
+    try:
+      resp = requests.get(url)
+      if resp.status_code != 200: return
+      return resp.text
+    except:
+      return
+  
 
-def read_config_from_file(fname):
-    with open(fname) as file:
-        config = file.read()
-    return config
+def read_config_from_file(file):
+    try:
+      config = file.get_bytes().decode()
+      return config
+    except:
+      return
 
 def preprocess_config(config):
     updated_config = []
@@ -65,19 +73,19 @@ def extract_steppers(parser, rotation_distance=25, microsteps=16):
     sections = parser.sections()
     stepper_sections = {}
     for section in sections:
-        step_pin = parser.get(section, 'step_pin', fallback=None)
-        dir_pin = parser.get(section, 'dir_pin', fallback=None)
-        en_pin = parser.get(section, 'enable_pin', fallback=None)
-        if step_pin and dir_pin and en_pin:
-            stepper_sections[section] = {
-                'stepper_conf': {
-                    'step_pin': step_pin,
-                    'dir_pin': dir_pin,
-                    'enable_pin': en_pin,
-                    'rotation_distance': rotation_distance,
-                    'microsteps': parser.get(section, 'microsteps', fallback=microsteps),
-                },
-            }
+      step_pin = parser.get(section, 'step_pin', fallback=None)
+      dir_pin = parser.get(section, 'dir_pin', fallback=None)
+      en_pin = parser.get(section, 'enable_pin', fallback=None)
+      if step_pin and dir_pin and en_pin:
+          stepper_sections[section] = {
+              'stepper_conf': {
+                  'step_pin': step_pin,
+                  'dir_pin': dir_pin,
+                  'enable_pin': en_pin,
+                  'rotation_distance': rotation_distance,
+                  'microsteps': parser.get(section, 'microsteps', fallback=microsteps),
+              },
+          }
     return stepper_sections
 
 def extract_tmc(parser, steppers):
@@ -128,4 +136,22 @@ def generate_mmu_hardware(steppers, tmc_selections=None):
 
 @anvil.server.callable
 def get_config(method, url, file):
-  print(method, url, file)
+  if method == 'url':
+    config = read_config_from_url(url)
+  elif method == 'file':
+    config = read_config_from_file(file)
+  try:
+    _ = get_parser(preprocess_config(config))
+  except Exception as e:
+    print(e)
+    return None
+  return config
+
+@anvil.server.callable
+def get_stepper_options(config):
+  config = preprocess_config(config)
+  parser = get_parser(config)
+  steppers = extract_steppers(parser)
+  print(config)
+  print(steppers)
+  return steppers
