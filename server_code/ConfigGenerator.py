@@ -141,17 +141,28 @@ def get_config(method, url, file):
   elif method == 'file':
     config = read_config_from_file(file)
   try:
-    _ = get_parser(preprocess_config(config))
-  except Exception as e:
-    print(e)
-    return None
+    config = preprocess_config(config)
+  except:
+    pass
   return config
+
+@anvil.server.callable
+def check_parsing(config):
+  try:
+    get_parser(preprocess_config(config))
+    return True, None
+  except Exception as e:
+    return False, str(e)
 
 @anvil.server.callable
 def get_stepper_options(config):
   config = preprocess_config(config)
   parser = get_parser(config)
   steppers = extract_steppers(parser)
-  print(config)
-  print(steppers)
   return steppers
+
+@anvil.server.callable
+def get_tmc_options(config, steppers):
+  parser = get_parser(config)
+  tmc = extract_tmc(parser, steppers)
+  return tmc

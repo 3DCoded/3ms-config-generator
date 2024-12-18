@@ -28,7 +28,7 @@ class UploadForm(UploadFormTemplate):
     """This method is called when the button is clicked"""
     config = anvil.server.call("get_config", self.uploadMethod, self.url_box.text, self.file_box.file)
     if config:
-      anvil.open_form('SelectSteppersForm', config=config)
+      anvil.open_form('VerifyConfigForm', config=config)
     else:
       alert("Invalid Configuration")
 

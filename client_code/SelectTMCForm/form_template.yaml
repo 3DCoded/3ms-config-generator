@@ -1,0 +1,22 @@
+components:
+- components:
+  - layout_properties: {grid_position: 'XHZBVI,MWXTKZ'}
+    name: headline_1
+    properties: {role: headline, text: 4. Select TMC Drivers}
+    type: Label
+  - layout_properties: {grid_position: 'HMCEFE,PISHUZ'}
+    name: linear_panel
+    properties: {}
+    type: LinearPanel
+  layout_properties: {slot: default}
+  name: content_panel
+  properties: {}
+  type: ColumnPanel
+- layout_properties: {slot: nav-right}
+  name: navbar_links
+  properties: {}
+  type: FlowPanel
+container:
+  properties: {html: '@theme:standard-page.html'}
+  type: HtmlTemplate
+is_package: true

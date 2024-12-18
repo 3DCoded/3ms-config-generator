@@ -5,7 +5,9 @@ unique_ids:
     theme.css: Q75ABP76ONZTYVINYNN4TD2CHIFNX2PZ
   forms:
     SelectSteppersForm: '1734535009159191014438654.1819'
+    SelectTMCForm: '1734551578534762355746596.3733'
     UploadForm: GWICD32T22D54QPJ4OJ57TLLNXB22BQV
+    VerifyConfigForm: '1734550744848868524696712.3652'
   modules: {}
   scripts: {}
   server_modules:
