@@ -29,14 +29,14 @@ class SelectTMCForm(SelectTMCFormTemplate):
 
   def submit_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    selected_options = {}
     panels = self.linear_panel.get_components()
     for panel in panels:
       components = panel.get_components()
-      stepper = components[0].text
+      stepper = components[0].text[9:-1]
       for component in components:
         if type(component) == RadioButton:
           if component.selected:
-            selected_options[stepper] = component.text[9:-1]
+            self.steppers[stepper][component.text] = self.tmc_options[stepper][component.text]
 
     # Move to next form
+    anvil.open_form('MCUNameForm', config=self.config, steppers=self.steppers)

@@ -13,12 +13,14 @@ Currently supports:
 - Configurations with or without TMC drivers
 """
 
+import io
 import requests
 import configparser
 
 config = ''
 
 def format_pin(pin, mcu):
+    if not mcu: return pin
     prefixes = ''
     if '!' in pin: prefixes += '!'
     if '~' in pin: prefixes += '~'
@@ -144,7 +146,7 @@ def get_config(method, url, file):
     config = preprocess_config(config)
   except:
     pass
-  return config
+  return config.strip()
 
 @anvil.server.callable
 def check_parsing(config):
@@ -166,3 +168,17 @@ def get_tmc_options(config, steppers):
   parser = get_parser(config)
   tmc = extract_tmc(parser, steppers)
   return tmc
+
+@anvil.server.callable
+def generate_hardware_config(steppers, mcu_name):
+  tmc_options = {}
+  for stepper, opts in steppers.items():
+    for opt in opts:
+      if 'tmc' in opt:
+        tmc_options[stepper] = opt
+  steppers = format_all_pins(steppers, mcu_name, tmc_options)
+  s = io.StringIO()
+  writer = generate_mmu_hardware(steppers, tmc_options)
+  writer.write(s)
+  s.seek(0)
+  return s.read()
