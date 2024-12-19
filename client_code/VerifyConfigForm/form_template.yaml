@@ -6,7 +6,7 @@ components:
     type: Label
   - layout_properties: {grid_position: 'YRVJHM,BTHMVB'}
     name: label_2
-    properties: {text: Verify that your configuration is free from errors.}
+    properties: {text: Ensure that your configuration is free from errors.}
     type: Label
   - layout_properties: {grid_position: 'GPXBRO,HXJDVB'}
     name: config_text_area

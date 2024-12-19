@@ -1,4 +1,4 @@
-allow_embedding: false
+allow_embedding: true
 metadata: {description: Configuration generator for Happy Hare firmware with the 3MS, logo_img: 'asset:logo.png', title: 3MS Config Generator}
 name: 3MS Config Generator
 package_name: _3MS_Config_Generator

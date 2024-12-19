@@ -15,16 +15,17 @@ components:
         - Supports different TMC drivers on a per-motor basis
         - Use as many or as few motors as you want
 
-        [here](https://github.com/Klipper3d/klipper/tree/master/config)
+        **Known Limitations:**
+        - Cannot create configurations without TMC drivers (the command-line version can)
     type: RichText
   - layout_properties: {grid_position: 'TYLKAM,FXXMMJ'}
     name: headline_2
     properties: {role: headline, text: 1. Upload Configuration}
     type: Label
-  - layout_properties: {grid_position: 'TCJDTL,YJNEUN'}
-    name: label_1
-    properties: {text: Download method for configuration}
-    type: Label
+  - layout_properties: {grid_position: 'WEEQOK,CQHNLD'}
+    name: rich_text_2
+    properties: {content: 'Select your method to upload the original configuration. Sample configurations can be found [here](https://github.com/Klipper3d/klipper/tree/master/config).'}
+    type: RichText
   - event_bindings: {clicked: url_radio_clicked}
     layout_properties: {grid_position: 'LHUMYK,OHKIYV'}
     name: url_radio
@@ -54,7 +55,11 @@ components:
   name: content_panel
   properties: {}
   type: ColumnPanel
-- components: []
+- components:
+  - event_bindings: {click: link_1_click}
+    name: link_1
+    properties: {}
+    type: Link
   layout_properties: {slot: nav-right}
   name: navbar_links
   properties: {}
