@@ -16,8 +16,13 @@ components:
   - event_bindings: {click: generate_button_click}
     layout_properties: {grid_position: 'JFFFAX,TUSJXG'}
     name: generate_button
-    properties: {role: primary-color, text: generate configuration}
+    properties: {role: primary-color, text: generate mmu_hardware.cfg}
     type: Button
+  - layout_properties: {grid_position: 'XEADHX,VCLGCM'}
+    name: rich_text_1
+    properties:
+      content: "To install your new configuration:\n1. Open your local `mmu_hardware.cfg`.\n2. Copy the below `mmu_hardware.cfg`\n3. Locate the gear section in your local `mmu_hardware.cfg`. It starts with:\n    ```\n    # FILAMENT DRIVE GEAR STEPPER(S)  --------------------------------------------------------------------------------------\n    #  ██████╗ ███████╗ █████╗ ██████╗ \n    # ██╔════╝ ██╔════╝██╔══██╗██╔══██╗\n    # ██║  ███╗█████╗  ███████║██████╔╝\n    # ██║   ██║██╔══╝  ██╔══██║██╔══██╗\n    # ╚██████╔╝███████╗██║  ██║██║  ██║\n    #  ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝\n    ```\n    \n    and ends right before:\n    ```\n    # SERVOS ---------------------------------------------------------------------------------------------------------------\n    # ███████╗███████╗██████╗ ██╗   ██╗ ██████╗ ███████╗\n    # ██╔════╝██╔════╝██╔══██╗██║   ██║██╔═══██╗██╔════╝\n    # ███████╗█████╗  ██████╔╝██║   ██║██║   ██║███████╗\n    # ╚════██║██╔══╝  ██╔══██╗╚██╗ ██╔╝██║   ██║╚════██║\n    # ███████║███████╗██║  ██║ ╚████╔╝ ╚██████╔╝███████║\n    # ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝   ╚═════╝ ╚══════╝\n    ```\n4. Replace the local gear section with the text your copied."
+    type: RichText
   - layout_properties: {grid_position: 'FKKLQS,FPAUXO'}
     name: mmu_hardware_box
     properties: {auto_expand: true, enabled: false, visible: false}
@@ -26,7 +31,14 @@ components:
   name: content_panel
   properties: {}
   type: ColumnPanel
-- layout_properties: {slot: nav-right}
+- components:
+  - name: link_2
+    properties: {align: center, icon: 'fa:github', text: '', url: 'https://github.com/3dcoded/3MS'}
+    type: Link
+  - name: link_3
+    properties: {align: center, icon: 'fa:terminal', url: 'https://3dcoded.github.io/3MS/guides/generator/'}
+    type: Link
+  layout_properties: {slot: nav-right}
   name: navbar_links
   properties: {}
   type: FlowPanel

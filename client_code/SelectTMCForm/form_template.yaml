@@ -4,6 +4,10 @@ components:
     name: headline_1
     properties: {role: headline, text: 4. Select TMC Drivers}
     type: Label
+  - layout_properties: {grid_position: 'NRHLXZ,FIRIVS'}
+    name: label_1
+    properties: {text: Choose from the below TMC drivers to run your 3MS steppers.}
+    type: Label
   - layout_properties: {grid_position: 'HMCEFE,PISHUZ'}
     name: linear_panel
     properties: {}
@@ -17,7 +21,14 @@ components:
   name: content_panel
   properties: {}
   type: ColumnPanel
-- layout_properties: {slot: nav-right}
+- components:
+  - name: link_2
+    properties: {align: center, icon: 'fa:github', text: '', url: 'https://github.com/3dcoded/3MS'}
+    type: Link
+  - name: link_3
+    properties: {align: center, icon: 'fa:terminal', url: 'https://3dcoded.github.io/3MS/guides/generator/'}
+    type: Link
+  layout_properties: {slot: nav-right}
   name: navbar_links
   properties: {}
   type: FlowPanel

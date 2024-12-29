@@ -4,7 +4,8 @@ components:
     name: headline_3
     properties: {font_size: 30, role: headline, text: 3MS Configuration Generator}
     type: Label
-  - layout_properties: {grid_position: 'KWKCWM,CFLBJO'}
+  - components: []
+    layout_properties: {grid_position: 'KWKCWM,CFLBJO'}
     name: rich_text_1
     properties:
       content: |-
@@ -17,15 +18,37 @@ components:
 
         **Known Limitations:**
         - Cannot create configurations without TMC drivers (the command-line version can)
+        - Does not support CAN MCU's
     type: RichText
   - layout_properties: {grid_position: 'TYLKAM,FXXMMJ'}
     name: headline_2
     properties: {role: headline, text: 1. Upload Configuration}
     type: Label
-  - layout_properties: {grid_position: 'WEEQOK,CQHNLD'}
+  - components:
+    - layout_properties: {}
+      name: image_1
+      properties: {display_mode: fill_width, height: 319.95703125, source: 'https://3dcoded.github.io/3MS/assets/images/guides/generator/generator01.png'}
+      type: Image
+    layout_properties: {grid_position: 'WEEQOK,CQHNLD'}
     name: rich_text_2
-    properties: {content: 'Select your method to upload the original configuration. Sample configurations can be found [here](https://github.com/Klipper3d/klipper/tree/master/config).'}
+    properties:
+      content: |-
+        Sample configurations can be found [here](https://github.com/Klipper3d/klipper/tree/master/config).
+
+        Once you find the desired configuration, click the "Raw" button.
     type: RichText
+  - layout_properties: {grid_position: 'BTQWXG,NNJVSH'}
+    name: label_1
+    properties: {text: Copy the raw URL.}
+    type: Label
+  - layout_properties: {grid_position: 'QUZVNG,CNXIYQ'}
+    name: image_2
+    properties: {display_mode: fill_width, source: 'https://3dcoded.github.io/3MS/assets/images/guides/generator/generator02.png'}
+    type: Image
+  - layout_properties: {grid_position: 'JAJHRE,KSTRNZ'}
+    name: label_2
+    properties: {text: 'Select your method to upload the original configuration. '}
+    type: Label
   - event_bindings: {clicked: url_radio_clicked}
     layout_properties: {grid_position: 'LHUMYK,OHKIYV'}
     name: url_radio
@@ -56,9 +79,19 @@ components:
   properties: {}
   type: ColumnPanel
 - components:
-  - event_bindings: {click: link_1_click}
+  - components:
+    - layout_properties: {grid_position: 'TUGTMO,GCSHVV'}
+      name: link_2
+      properties: {align: center, icon: 'fa:github', text: '', url: 'https://github.com/3dcoded/3MS'}
+      type: Link
+    - layout_properties: {grid_position: 'TUGTMO,BNLDRE'}
+      name: link_3
+      properties: {align: center, icon: 'fa:terminal', text: '', url: 'https://3dcoded.github.io/3MS/guides/generator/'}
+      type: Link
+    event_bindings: {click: link_1_click}
+    layout_properties: {}
     name: link_1
-    properties: {}
+    properties: {text: ''}
     type: Link
   layout_properties: {slot: nav-right}
   name: navbar_links
