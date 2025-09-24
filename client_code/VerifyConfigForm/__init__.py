@@ -9,7 +9,8 @@ class VerifyConfigForm(VerifyConfigFormTemplate):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
-    self.config_text_area.text = properties['config']
+    self.first_lines = '\n'.join(properties['config'].splitlines()[:3])
+    self.config_text_area.text = '\n'.join(properties['config'].splitlines()[3:])
 
   def verify_button_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -25,6 +26,6 @@ class VerifyConfigForm(VerifyConfigFormTemplate):
 
   def submit_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    anvil.open_form('SelectSteppersForm', config=self.config_text_area.text)
+    anvil.open_form('SelectSteppersForm', config=self.first_lines + '\n' + self.config_text_area.text)
 
     

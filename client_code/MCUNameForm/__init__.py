@@ -15,7 +15,7 @@ class MCUNameForm(MCUNameFormTemplate):
   def generate_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     mcu_name = self.mcu_name_box.text.strip()
-    cfg = anvil.server.call('generate_hardware_config', self.steppers, mcu_name)
+    cfg = anvil.server.call('generate_hardware_config', self.config, self.steppers, mcu_name)
     self.mmu_hardware_box.text = cfg
     self.mmu_hardware_box.visible = True
     try:
