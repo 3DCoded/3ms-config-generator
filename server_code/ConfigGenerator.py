@@ -177,7 +177,7 @@ def generate_hardware_config(config, steppers, mcu_name):
     if temp_parser.get('cfggen_source', 'source', fallback=None) == 'url':
       source_url = temp_parser.get('cfggen_source', 'url', fallback=None)
 
-  soure_url_text = ''
+  source_url_text = ''
   if source_url is not None:
     source_url_text = f'''#
 # This configuration was generated from the following configuration:
